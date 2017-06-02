@@ -58,7 +58,7 @@ Route::get('pand/{pandId}/like', 'pandController@likePand')->middleware('authHuu
 Route::get('pand/{pandId}/info', 'pandController@Infopand')->name('pandInfo');
 
 // Route die alle likes toont van een huurder
-Route::get('huurder/intresses', 'huurderController@overviewLikes')->middleware('authHuurder');
+Route::get('huurder/intresses', 'huurderController@overviewLikes')->name('huurderIntresse')->middleware('authHuurder');
 
 // route voor het maken van een huurafspraak
 Route::post('pand/{pandId}/huurafspraak', 'huurderController@pandHuurafspraak')->middleware('authHuurder');

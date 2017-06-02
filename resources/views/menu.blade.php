@@ -1,7 +1,7 @@
 @if(\Illuminate\Support\Facades\Session::has('huurder_Voornaam'))
     <ul>
         <li><a href="{{route('allePanden')}}">Ruimtes</a></li>
-        <li><a href="#">Favorieten</a></li>
+        <li><a href="{{ route('huurderIntresse') }}">Favorieten</a></li>
         <li id="user">
             <i class="fa fa-caret-down" aria-hidden="true"></i>
             <p>{{\Illuminate\Support\Facades\Session::get('huurder_Voornaam') }}</p>
