@@ -101,7 +101,7 @@ class pandController extends Controller
 
     public function getAllpands()
     {
-        $intresses = DB::select('SELECT idPand, COUNT(heeftInteresse) as aantalLikes FROM interesse GROUP BY idPand ORDER BY aantalLikes DESC');
+        $intresses = DB::select('SELECT idPand, COUNT(heeftInteresse) as aantalLikes FROM interesse GROUP BY idPand ORDER BY aantalLikes DESC LIMIT 3');
         $panden = array();
         foreach ($intresses as $intresse) {
             $panden[] = Pand::where('idPand', '=', $intresse->idPand)->first();
