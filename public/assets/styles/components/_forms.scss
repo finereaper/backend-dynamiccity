@@ -1,0 +1,216 @@
+input,
+select,
+option {
+    border: none;
+    color: #333 !important;
+    padding: 15px 32px;
+    margin: 5px !important;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 90%;
+}
+input[type=file] {
+    background-color: white;
+    height: 30px !important;
+}
+
+/** Datepicker **/
+
+[type="date"] {
+    background: #fff url(../images/cal.png) 97% 50% no-repeat;
+}
+
+[type="date"]::-webkit-inner-spin-button {
+    display: none;
+}
+
+[type="date"]::-webkit-calendar-picker-indicator {}
+
+
+/** Checkbox **/
+
+input[type=checkbox].css-checkbox {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
+input[type=checkbox].css-checkbox+label.css-label {
+    padding-left: 20px;
+    height: 15px;
+    display: inline-block;
+    line-height: 15px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    font-size: 15px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+input[type=checkbox].css-checkbox:checked+label.css-label {
+    background-position: 0 -15px;
+}
+
+.zoekPlaats {
+    width: 60% !important;
+    float: left;
+    margin-right: 0 !important;
+    margin-left: 24px !important;
+}
+
+.zoekButton {
+    width: 30% !important;
+    margin-left: 1px !important;
+    float: left;
+    height: 50px !important;
+    background-color: $steunkleur;
+    color: white !important;
+    font-size: 14px;
+}
+
+@media only screen and (max-width : 480px) {
+    .zoekPlaats {
+        width: 97% !important;
+        float: left;
+        margin-right: 0 !important;
+        margin-left: 0px !important;
+    }
+    
+    .zoekButton {
+        width: 97% !important;
+        margin-left: 0px !important;
+        float: left;
+        height: 50px !important;
+        background-color: #E85C3A;
+        color: white !important;
+        font-size: 14px;
+    }
+}
+
+.css-label {
+    background-image: url(http://csscheckbox.com/checkboxes/lite-orange-check.png);
+}
+
+.button {
+    margin-top: 20px !important;
+    width: 90%;
+    background-color: $steunkleur;
+    color: white !important;
+    font-size: 14px;
+}
+
+.acceptHuur {
+    position: relative;
+    display: inline-block;
+    background-color: $jungleGreen !important;
+}
+
+.denyHuur {
+    position: relative;
+    display: inline-block;
+}
+
+.huurAccepted {
+    background-color: lightgrey;
+}
+
+.huurData button{
+    height: 59px;
+}
+.huurData li:last-child{
+    text-align:right;
+}
+
+.inputDesc {
+    margin: 0;
+    padding: 0;
+    margin-left: 15px;
+    width: 90%;
+    color: white !important;
+    text-align: left;
+}
+
+.huurLabel {
+    color: #333 !important;
+    font-family: Tahoma;
+}
+
+.huurDate {
+    color: #333 !important;
+    border-bottom: 2px solid $steunkleur;
+    font-size: 20px;
+    letter-spacing: 3px;
+    width: 80%;
+    margin: 0;
+}
+
+.huurButton {
+    margin-top: 20px !important;
+    font-size: 16px !important;
+    width: 40%;
+    float: left;
+    background-color: $steunkleur;
+    color: white !important;
+}
+
+.huurVraagButton {
+    margin-top: 20px !important;
+    font-size: 16px;
+    margin-left: 2%;
+    width: 37% !important;
+    background-color: $jungleGreen;
+}
+
+.regLabel {
+    margin: 0;
+    padding: 0;
+    width: 30%;
+    color: white !important;
+    font-size: 12px;
+    text-align: left;
+    float: left;
+    display: inline-block;
+    line-height: 30px;
+<<<<<<< HEAD
+    margin: 0;
+=======
+}
+
+@media only screen and (max-width : 480px) {
+    .regLabel {
+        width: 100%;
+    }
+}
+
+.smallInput {
+    height: 24px !important;
+    width: 60%;
+    float: left;
+    display: inline-block;
+    padding: 5px !important;
+    font-size: 12px;
+>>>>>>> 55d9a25cff089ce988f1188d75f8bbedf54ff936
+}
+
+@media only screen and (max-width : 480px) {
+    .smallInput {
+        width: 100%;
+    }
+}
+
+#listCreateAccount {
+    list-style: none;
+    padding: 0;
+    
+    li {
+        .error {
+            color: $steunkleur;
+        }
+    }
+}

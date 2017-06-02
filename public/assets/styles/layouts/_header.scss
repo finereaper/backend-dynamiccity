@@ -1,0 +1,211 @@
+#headerLogo {
+    max-width: 450px;
+    height: 96px;
+    img {
+        width: 100%;
+    }
+}
+
+#headerOpmaak {
+    padding: 20px 0px;
+    position: relative;
+    background: $wit;
+    z-index: 1;
+}
+
+#loginButton {
+    line-height: 26px !important;
+    a {
+        color: white !important;
+    }
+}
+
+#headerNav {
+    padding-top: 2%;
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        float: right;
+        font-size: 18px !important;
+        line-height: 52px !important;
+        li {
+            float: left;
+            padding: 0 11px;
+            max-height: 52px;
+            a {
+                color: $hoofdkleur;
+            }
+            a:hover {
+                text-decoration: none;
+            }
+            #userPic {
+                max-height: 52px;
+                max-width: 52px;
+                margin-left: 22px;
+                
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                img {
+                    zoom: 2;
+                    display: block;
+                    margin: auto;
+                    height: auto;
+                    max-height: 100%;
+                    width: auto;
+                    max-width: 100%;
+                }
+            }
+            #userMenu {
+                display: none;
+            }
+        }
+        #user {
+            background: $hoofdkleur;
+            color: #fff;
+            padding: 0 62px 0 30px;
+            width: auto;
+            max-width: 220px;
+            position: relative;
+            cursor: pointer;
+            i {
+                position: absolute;
+                left: 15px;
+                line-height: 52px;
+                transition: transform 0.2s ease-out;
+            }
+            p {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            #userMenu {
+                background-color: $jungleGreen;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                ul{
+                    width: 100%;
+                    li {
+                        display: inline-block;
+                        float: left;
+                        font-size: 14px;
+                        width: 100%;
+                        a {
+                            color: #fff;
+                        }
+                    }
+                    li:hover {
+                        background: #fff;
+                        a {
+                            color: $hoofdkleur;
+                            border: none;
+                        }
+                    }
+                }
+            }
+        }
+        #user:hover, #user:active {
+            #userMenu {
+                display: block;
+            }
+            i.fa-caret-down {
+                -ms-transform: scale(1, -1);
+                -webkit-transform: scale(1, -1);
+                transform: scale(1, -1);
+                transition: transform 0.2s ease-out;
+            }
+        }
+        li:hover > a {
+            border-bottom: 3px solid $steunkleur;
+        }
+        li:last-child {
+            padding-right: 0;
+        }
+    }
+}
+
+#schnitzelMenu {
+    display: none;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 480px) {}
+
+@media only screen and (max-width: 768px) {
+    #headerLogo {
+        max-width: 70%;
+        height: auto;
+        max-height: 96px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    main {
+        margin-top: 90px;
+    }
+    #headerOpmaak {
+        height: 90px;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        transition: top 0.2s ease-in-out;
+        #headerLogo {
+            max-height: 50px;
+            width: auto;
+        }
+        #headerNav {
+            background: $wit;
+            position: fixed;
+            top: 0;
+            right: -250px;
+            width: 250px;
+            height: 100vh;
+            padding-top: 90px;
+            z-index: -1;
+            transition: right 0.5s ease-out;
+            ul {
+                float: none;
+                li {
+                    float: none;
+                    max-height: 52px;
+                }
+                #user {
+                    position: relative;
+                    width: 100%;
+                    p {
+                        max-width: calc(100% - 5px);
+                    }
+                    #userPic {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                    }
+                }
+            }
+        }
+        #headerNav.enabled {
+            right: 0;
+        }
+        #schnitzelMenu {
+            display: block;
+            position: absolute;
+            top: 45px;
+            right: 20px;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+        #schnitzelMenu.opened {
+            position: fixed;
+        }
+    }
+    .nav-up {
+        top: -90px !important;
+    }
+}
+
+@media only screen and (max-width: 1200px) {}
