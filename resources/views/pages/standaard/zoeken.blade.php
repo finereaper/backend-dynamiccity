@@ -65,6 +65,9 @@
         </section>
         <section class="sectionMargin">
             <div class="pandOverzicht container">
+                @if(session('status'))
+                    <h2 class="text-center">{{session('status')}}</h2>
+                @endif
                 <h2 class="text-center">Populairste ruimtes</h2>
                 <div class="row">
                     @foreach($panden as $pand)
