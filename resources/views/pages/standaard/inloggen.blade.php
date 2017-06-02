@@ -58,13 +58,14 @@
                      class="col-md-offset-4 col-md-4 col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-10">
                     <span class="subTitle">Welkom op Dynamic-City</span>
                     <h1 id="loginHeader">Inloggen</h1>
-                    <form action="inloggen" method="post">
+                    <form id="loginForm" action="inloggen" method="post">
                         {{ csrf_field() }}
                         <p class="inputDesc">E-mail adres</p><input type="email" name="gebruikerGebruikersnaam"
                                                                     placeholder="E-mail adres">
                         <p class="inputDesc">Wachtwoord</p><input type="password" name="gebruikerWachtwoord"
                                                                   placeholder="Wachtwoord">
-                        <input class="button" type="submit" name="gebruikerInloggen" value="Inloggen">
+                        <input class="button" type="submit" name="huurderInloggen" value="Inloggen">
+                        <input class="button" id="verhuurderInloggen" type="button" name="verhuurderInloggen" value="Inloggen Verhuurder">
                     </form>
                     <p id="registreerVraag">Nog geen account? <a href="/huurder/registratie">Registreer je nu!</a></p>
                 </div>
@@ -107,7 +108,7 @@
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js"></script>
                 <script src="public/assets/liquidslider-master/js/jquery.liquid-slider.min.js"></script>
 		@include('analytics')
-		 <script src="/public/js/main.js"></script>
+		        <script src="/public/js/main.js"></script>
                 <script src="/public/assets/js/schnitzelMenu.js"></script>
                 <script>
                     $('#main-slider').liquidSlider();

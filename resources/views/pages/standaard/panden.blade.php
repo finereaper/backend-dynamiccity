@@ -76,7 +76,7 @@
                     @endforeach
                 </div>
                 <div class="text-center row">
-                    <button type="button">Bekijk meer</button>
+                    <a href="/map"><button type="button">Bekijk meer</button></a>
                 </div>
             </div>
         </section>

@@ -6,5 +6,9 @@ $(document).ready(function () {
         $('.alert').fadeOut(3000);
     }
 
+    $( "#verhuurderInloggen" ).click(function() {
+        $("#loginForm").attr('action', '/verhuurder/inloggen')
+        $("#loginForm").submit();
+    });
 });
 
