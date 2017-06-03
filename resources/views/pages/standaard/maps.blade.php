@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="/public/assets/liquidslider-master/css/liquid-slider.css">
     <link rel="stylesheet" href="/public/assets/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/public/{{ mix('/css/app.css') }}">
-    <meta charset="UTF-8">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mijn panden - Map</title>
 </head>
 <body>
 
