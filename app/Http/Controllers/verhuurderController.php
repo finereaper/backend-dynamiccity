@@ -46,7 +46,7 @@ class verhuurderController extends Controller
             $verhuurder->save();
             return redirect('/verhuurder/inloggen')->with('status', 'Registeren is gelukt');
         }
-        return back()->with('status', 'Dit email adress is al eerder gebruikt');
+        return back()->with('status', 'Dit email adress is al eerder gebruikt')->withInput(Input::except('gebruikerWachtwoord1','gebruikerWachtwoord2'));
     }
 
     public function showLogin()
@@ -71,9 +71,9 @@ class verhuurderController extends Controller
                 Session::put('verhuurder_Achternaam', $account->verhuurder_Achternaam);
                 return redirect()->route('verhuurderProfiel');
             }
-            return back()->withInput($request->except('gebruikerWachtwoord'));
+            return back()->withInput(Input::except('gebruikerWachtwoord'));
         }
-        return back()->withInput($request->except('gebruikerWachtwoord'));
+        return back()->withInput(Input::except('gebruikerWachtwoord'));
     }
 
     public function doLogout()

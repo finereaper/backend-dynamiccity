@@ -61,12 +61,12 @@
                     <h2 id="loginHeader">Word verhuurder</h2>
                     <form action="registeren" method="post">
                         {{ csrf_field() }}
-                        <p class="regLabel">Voornaam</p>        <input class="smallInput" name="gebruikerVoornaam"  type="text">
-                        <p class="regLabel">Achternaam</p>      <input class="smallInput" name="gebruikerAchternaam" type="text">
-                        <p class="regLabel">E-mail adres</p>    <input class="smallInput" name="gebruikerEmail" type="email">
-                        <p class="regLabel">Bedrijfsnaam</p>    <input class="smallInput" name="gebruikerBedrijfsnaam" type="text">
-                        <p class="regLabel">Telefoonnummer</p>  <input class="smallInput" name="gebruikerTelefoonnummer" type="text">
-                        <p class="regLabel">Omschrijving</p>  <input class="smallInput" name="gebruikerOmschrijving" rows="1" type="text">
+                        <p class="regLabel">Voornaam</p>        <input class="smallInput" name="gebruikerVoornaam"  type="text" value="{{ \Illuminate\Support\Facades\Input::old('gebruikerVoornaam')}}">
+                        <p class="regLabel">Achternaam</p>      <input class="smallInput" name="gebruikerAchternaam" type="text" value="{{ \Illuminate\Support\Facades\Input::old('gebruikerAchternaam')}}">
+                        <p class="regLabel">E-mail adres</p>    <input class="smallInput" name="gebruikerEmail" type="email" value="{{ \Illuminate\Support\Facades\Input::old('gebruikerEmail')}}">
+                        <p class="regLabel">Bedrijfsnaam</p>    <input class="smallInput" name="gebruikerBedrijfsnaam" type="text" value="{{ \Illuminate\Support\Facades\Input::old('gebruikerBedrijfsnaam')}}">
+                        <p class="regLabel">Telefoonnummer</p>  <input class="smallInput" name="gebruikerTelefoonnummer" type="text" value="{{ \Illuminate\Support\Facades\Input::old('gebruikerTelefoonnummer')}}">
+                        <p class="regLabel">Omschrijving</p>  <input class="smallInput" name="gebruikerOmschrijving" rows="1" type="text" value="{{ \Illuminate\Support\Facades\Input::old('gebruikerOmschrijving')}}">
                         <p class="regLabel">Wachtwoord</p>      <input class="smallInput" name="gebruikerWachtwoord1" type="password">
                         <p class="regLabel">Herhaal</p>      <input  class="smallInput" name="gebruikerWachtwoord2" type="password">
                         <input class="button" name="Registreren" type="submit" value="Registreren">

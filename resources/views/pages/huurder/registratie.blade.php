@@ -67,21 +67,21 @@
                     <form action="registeren" method="post">
                         {{ csrf_field() }}
                         <p class="regLabel">Voornaam</p> <input class="smallInput" type="text" name="gebruikerVoornaam"
-                                                                required>
+                                                                required value="{{ \Illuminate\Support\Facades\Input::old('gebruikerVoornaam')}}">
                         <p class="regLabel">Achternaam</p> <input class="smallInput" type="text"
-                                                                  name="gebruikerAchternaam" required>
+                                                                  name="gebruikerAchternaam" required value="{{ \Illuminate\Support\Facades\Input::old('gebruikerAchternaam')}}">
                         <p class="regLabel">E-mail adres</p> <input class="smallInput" type="email"
-                                                                    name="gebruikerEmail" required>
+                                                                    name="gebruikerEmail" required value="{{ \Illuminate\Support\Facades\Input::old('gebruikerEmail')}}">
                         <p class="regLabel">Geboortedatum</p> <input class="smallInput" type="date"
-                                                                     name="gebruikerGeboortedatum" required>
+                                                                     name="gebruikerGeboortedatum" required value="{{ \Illuminate\Support\Facades\Input::old('gebruikerGeboortedatum')}}">
                         <p class="regLabel">Bedrijfsnaam</p> <input class="smallInput" type="text"
-                                                                    name="gebruikerBedrijfsnaam">
+                                                                    name="gebruikerBedrijfsnaam" value="{{ \Illuminate\Support\Facades\Input::old('gebruikerBedrijfsnaam')}}">
                         <p class="regLabel">Telefoonnummer</p> <input class="smallInput" type="text"
-                                                                      name="gebruikerTelefoonnummer" required>
+                                                                      name="gebruikerTelefoonnummer" required value="{{ \Illuminate\Support\Facades\Input::old('gebruikerTelefoonnummer')}}">
                         <p class="regLabel">Postcode</p> <input class="smallInput" type="text" name="gebruikerPostcode"
-                                                                required>
+                                                                required value="{{ \Illuminate\Support\Facades\Input::old('gebruikerPostcode')}}">
                         <p class="regLabel">Productgroep</p> <select class="smallInput" name="gebruikerProductgroep"
-                                                                     required>
+                                                                     required value="{{ \Illuminate\Support\Facades\Input::old('gebruikerProductgroep')}}">
                             <option value="Kies een productgroep" disabled selected>Kies een productgroep</option>
                             <option value="ICT">ICT</option>
                             <option value="Sokken">Sokken</option>

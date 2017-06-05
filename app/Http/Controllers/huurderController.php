@@ -51,7 +51,7 @@ class huurderController extends Controller
             $huurder->save();
             return redirect('/huurder/inloggen')->with('status', 'Registeren is succesvol');
         }
-        return back()->with('status', 'Dit email adress is al eerder gebruikt');
+        return back()->with('status', 'Dit email adress is al eerder gebruikt')->withInput(Input::except('gebruikerWachtwoord1','gebruikerWachtwoord2'));;
     }
 
     public function showLogin()
@@ -76,9 +76,9 @@ class huurderController extends Controller
                 Session::put('huurder_Achternaam', $account->huurder_Achternaam);
                 return redirect()->route('allePanden');
             }
-            return back()->withInput($request->except('gebruikerWachtwoord'));
+            return back()->withInput(Input::except('gebruikerWachtwoord'));
         }
-        return back()->withInput($request->except('gebruikerWachtwoord'));
+        return back()->withInput(Input::except('gebruikerWachtwoord'));
     }
 
     public function doLogout()
