@@ -58,6 +58,11 @@
                      class="col-md-offset-4 col-md-4 col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-10">
                     <span class="subTitle">Welkom op Dynamic-City</span>
                     <h1 id="loginHeader">Inloggen</h1>
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                     <form id="loginForm" action="inloggen" method="post">
                         {{ csrf_field() }}
                         <p class="inputDesc">E-mail adres</p><input type="email" name="gebruikerGebruikersnaam"

@@ -71,9 +71,9 @@ class verhuurderController extends Controller
                 Session::put('verhuurder_Achternaam', $account->verhuurder_Achternaam);
                 return redirect()->route('verhuurderProfiel');
             }
-            return back()->withInput(Input::except('gebruikerWachtwoord'));
+            return back()->with('status', 'Email of wachtwoord is incorrect');
         }
-        return back()->withInput(Input::except('gebruikerWachtwoord'));
+        return back()->with('status', 'Email of wachtwoord is incorrect');
     }
 
     public function doLogout()

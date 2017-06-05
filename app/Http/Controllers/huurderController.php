@@ -76,9 +76,9 @@ class huurderController extends Controller
                 Session::put('huurder_Achternaam', $account->huurder_Achternaam);
                 return redirect()->route('allePanden');
             }
-            return back()->withInput(Input::except('gebruikerWachtwoord'));
+            return back()->with('status', 'Email of wachtwoord is incorrect');
         }
-        return back()->withInput(Input::except('gebruikerWachtwoord'));
+        return back()->with('status', 'Email of wachtwoord is incorrect');
     }
 
     public function doLogout()
