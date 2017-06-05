@@ -75,6 +75,18 @@
             <div class="container">
                 <div class="row">
                     <div class="padding-bottom-25 col-md-5 col-sm-8 col-xs-12">
+                        <div id="vraagPopup">
+                            <a href="#" class="cancel"><i class="fa fa-close"></i></a>
+                            <h3>Stel een vraag</h3>
+                            <form action="/pand/{{ $pandInfo["idPand"] }}/stelvraag" method="post">
+                                {{ csrf_field() }}
+                                <input type="email" placeholder="E-mailadres" name="gebruikerEmail">
+                                <textarea id="vraagText" name="Vraag">
+                                </textarea>
+                                <input class="huurVraagButton" type="submit" value="Verstuur vraag">
+                            </form>
+                        </div>
+                        <div id="cover"> </div>
                         <h2 class="pandInfoH2">Interesse? Maak dan snel een afspraak!</h2>
                         <form action="/pand/{{ $pandInfo["idPand"] }}/huurafspraak" method="post">
                             {{ csrf_field() }}
@@ -87,8 +99,8 @@
                             <input type="checkbox" id="checkbox2" class="css-checkbox" checked="checked" />
                             <label for="checkbox2" name="checkbox2_lbl" class="css-label lite-orange-check">Ik ga akkoord met de <a href="#">voorwaarden</a> van Dynamic City.</label>
                             <input class="huurButton" type="submit" value="Huur dit pand!">
-                            <button class="huurVraagButton">Stel een vraag</button>
                         </form>
+                        <a href="#vraagPopup"><button class="huurVraagButton">Stel een vraag</button></a>
                     </div>
                     <figure class="align-right col-md-offset-1 col-md-6 col-sm-8 col-xs-12"><img class="img-responsive" src="/public/images/{{getSecondpicture($pandInfo['idPand'])}}"></figure>
                 </div>
