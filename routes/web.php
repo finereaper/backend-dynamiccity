@@ -20,6 +20,8 @@ Route::get('panden/overzicht', 'pandController@getAllpands')->name('allePanden')
 Route::post('panden/zoek', 'pandController@searchPands');
 Route::get('info', 'pandController@getInfo');
 Route::get('voorwaarden', 'defaultController@getVoorwaarden')->name('voorwaarden');
+Route::get('wachtwoordreset', 'defaultController@getPassswordreset');
+Route::post('wachtwoordreset', 'defaultController@postPassswordreset');
 
 
 //route voor het registeren van de huurder en verhuurder

@@ -8,4 +8,5 @@ class Verhuurder extends Model
 {
     public $timestamps = false;
     protected $table = "verhuurder";
+    public $primaryKey = "verhuurder_ID";
 }

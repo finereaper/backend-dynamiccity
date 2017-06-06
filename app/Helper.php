@@ -57,3 +57,17 @@ function emailExist($email)
     }
     return false;
 }
+
+function infoAccount($email)
+{
+    if(Huurder::where('huurder_Email', '=',$email)->exists())
+    {
+        $huurder = Huurder::where('huurder_Email', '=',$email)->first();
+        return $huurder['attributes'];
+    }
+    else if(Verhuurder::where('verhuurder_Email', '=', $email)->exists())
+    {
+        $verhuurder = Verhuurder::where('verhuurder_Email', '=', $email)->first();
+        return $verhuurder['attributes'];
+    }
+}
