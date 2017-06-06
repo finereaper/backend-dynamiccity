@@ -6,15 +6,19 @@ use App\Favorieten;
 use App\Http\Requests\EditpandRequest;
 use App\Http\Requests\UploadRequest;
 use App\Interesse;
+use App\Mail\Stelvraag;
+use App\Mail\StelvraagConfor;
 use App\Pand;
 use App\pandFoto;
 use DoctrineTest\InstantiatorTestAsset\PharAsset;
 use Faker\Provider\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
+use Symfony\Component\Console\Helper\Table;
 use function Symfony\Component\Debug\Tests\FatalErrorHandler\test_namespaced_function;
 
 class pandController extends Controller
@@ -191,5 +195,19 @@ class pandController extends Controller
     public function pandMaps()
     {
         return view('pages.standaard.maps');
+    }
+
+    public function postStelvraag(Request $request, $pandId)
+    {
+        $query = DB::select('SELECT verhuurder_Voornaam,verhuurder_Achternaam,verhuurder_Email FROM verhuurder WHERE verhuurder_ID in (SELECT verhuurder_ID FROM pand WHERE idPand = ?)', [$pandId]);
+        $query2 = Pand::select('straat')->where('idPand', '=', $pandId)->first();
+        $pand_Straat = $query2['attributes']['straat'];
+        $verhuurder_Naam = $query[0]->verhuurder_Voornaam . ' ' . $query[0]->verhuurder_Achternaam;
+        $verhuurder_Email = $query[0]->verhuurder_Email;
+        $gebruiker_Email = $request->gebruikerEmail;
+        $gebruiker_Message = $request->Vraag;
+        Mail::to($verhuurder_Email)->send(new Stelvraag($verhuurder_Naam, $gebruiker_Email, $gebruiker_Message, $pand_Straat));
+        Mail::to($gebruiker_Email)->send(new StelvraagConfor($verhuurder_Naam, $gebruiker_Email, $gebruiker_Message, $pand_Straat));
+
     }
 }

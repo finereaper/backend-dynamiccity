@@ -63,6 +63,9 @@ Route::get('huurder/intresses', 'huurderController@overviewLikes')->name('huurde
 // route voor het maken van een huurafspraak
 Route::post('pand/{pandId}/huurafspraak', 'huurderController@pandHuurafspraak')->middleware('authHuurder');
 
+// route voor het versturen van een vraag
+Route::post('pand/{pandId}/stelvraag', 'pandController@postStelvraag');
+
 // route voor het ophalen van alle huurafspraken van een verhuurder
 Route::get('verhuurder/huurafspraken', 'verhuurderController@overviewHuuraspraken')->middleware('authVerhuurder');
 Route::get('verhuurder/accepteer/huurafspraak/{huurder_ID}/{pandId}','verhuurderController@acceptHuurafspraak')->middleware('authVerhuurder');
