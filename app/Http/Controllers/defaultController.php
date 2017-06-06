@@ -13,4 +13,9 @@ class defaultController extends Controller
         $panden = $panden->take(3);
         return view('pages.standaard.index', compact('panden'));
     }
+
+    public function getVoorwaarden()
+    {
+        return view('pages.standaard.voorwaarde');
+    }
 }

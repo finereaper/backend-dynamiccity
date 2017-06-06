@@ -19,6 +19,7 @@ Route::get('panden/fotos/{pandId}','pandController@getAllfoto');
 Route::get('panden/overzicht', 'pandController@getAllpands')->name('allePanden');
 Route::post('panden/zoek', 'pandController@searchPands');
 Route::get('info', 'pandController@getInfo');
+Route::get('voorwaarden', 'defaultController@getVoorwaarden')->name('voorwaarden');
 
 
 //route voor het registeren van de huurder en verhuurder
