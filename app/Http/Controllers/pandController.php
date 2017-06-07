@@ -208,6 +208,7 @@ class pandController extends Controller
         $gebruiker_Message = $request->Vraag;
         Mail::to($verhuurder_Email)->send(new Stelvraag($verhuurder_Naam, $gebruiker_Email, $gebruiker_Message, $pand_Straat));
         Mail::to($gebruiker_Email)->send(new StelvraagConfor($verhuurder_Naam, $gebruiker_Email, $gebruiker_Message, $pand_Straat));
+        return back()->with('status', 'Uw mail is verstuurd');
 
     }
 }
