@@ -73,6 +73,7 @@
                         <input class="button" id="verhuurderInloggen" type="button" name="verhuurderInloggen" value="Inloggen Verhuurder">
                     </form>
                     <p id="registreerVraag">Nog geen account? <a href="/huurder/registratie">Registreer je nu!</a></p>
+                    <p id="registreerVraag">Wachtwoord vergeten? <a href="/wachtwoordreset">Klik hier!</a></p>
                 </div>
             </div>
         </section>
