@@ -95,7 +95,7 @@
                             <label class="huurLabel">Eind huurperiode</label>
                             <input class="huurDate" name="gebruikerEinddatum" type="date">
                             <label class="huurLabel">Aantal plekken</label>
-                            <input class="huurDate" name="gebruikerAantalplekken" type="number">
+                            <input class="huurDate" name="gebruikerAantalplekken" type="number" min="1" max="{{$pandInfo['aantalPlekken']}}">
                             <input type="checkbox" id="checkbox2" class="css-checkbox" checked="checked" />
                             <label for="checkbox2" name="checkbox2_lbl" class="css-label lite-orange-check">Ik ga akkoord met de <a href="{{ route('voorwaarden') }}">voorwaarden</a> van Dynamic City.</label>
                             <input class="huurButton" type="submit" value="Huur dit pand!">
