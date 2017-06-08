@@ -59,7 +59,7 @@
             <div class="container" style="padding: 50px 0px;">
                 <div id="introBlock" class="registerBlock col-md-offset-4 col-md-4 col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-10">
                     <h2 id="loginHeader">Word verhuurder</h2>
-                    <form action="registeren" method="post">
+                    <form id="signupForm" action="registeren" method="post">
                         {{ csrf_field() }}
                         <p class="regLabel">Voornaam</p>        <input class="smallInput" name="gebruikerVoornaam"  type="text" value="{{ \Illuminate\Support\Facades\Input::old('gebruikerVoornaam')}}">
                         <p class="regLabel">Achternaam</p>      <input class="smallInput" name="gebruikerAchternaam" type="text" value="{{ \Illuminate\Support\Facades\Input::old('gebruikerAchternaam')}}">
@@ -118,10 +118,69 @@
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js"></script>
+                <script type="text/javascript" src="/public/assets/jquery-validation-v1.16/lib/jquery.js"></script>
+                <script type="text/javascript" src="/public/assets/jquery-validation-v1.16/dist/jquery.validate.js"></script>
+                <script type="text/javascript" src="/public/assets/jquery-validation-v1.16/dist/additional-methods.js"></script>
                 <script src="/public/assets/liquidslider-master/js/jquery.liquid-slider.min.js"></script>
-		@include('analytics')
-		<script src="/public/js/main.js"></script>
+		        @include('analytics')
+		        <script src="/public/js/main.js"></script>
                 <script src="/public/assets/js/schnitzelMenu.js"></script>
+                <script>
+                    $().ready(function() {
+                        // validate signup form on keyup and submit
+                        $("#signupForm").validate({
+                            rules: {
+                                gebruikerVoornaam: "required",
+                                gebruikerAchternaam: "required",
+                                /*username: {
+                                 required: true,
+                                 minlength: 2
+                                 },*/
+                                gebruikerTelefoonnummer: {
+                                    required: true,
+                                    number: true,
+                                    minlength: 10
+                                },
+                                gebruikerWachtwoord1: {
+                                    required: true,
+                                    minlength: 8
+                                },
+                                gebruikerWachtwoord2: {
+                                    required: true,
+                                    minlength: 8,
+                                    equalTo: "#gebruikerWachtwoord1"
+                                },
+                                gebruikerEmail: {
+                                    required: true,
+                                    email: true
+                                },
+                                gebruikerBedrijfsnaam: "required",
+                                gebruikerOmschrijving: "required",
+                            },
+                            messages: {
+                                gebruikerVoornaam: "Vul uw voornaam in",
+                                gebruikerAchternaam: "Vul uw achternaam in",
+                                gebruikerTelefoonnummer: {
+                                    required: "Vul alstublieft een wachtwoord in",
+                                    number: "Uw telefoonnummer mag alleen maar uit cijfers bestaan",
+                                    minlength: "Uw telefoonnummer moet 10 tekens langs zijn"
+                                },
+                                gebruikerWachtwoord1: {
+                                    required: "Vul alstublieft een wachtwoord in",
+                                    minlength: "Uw wachtwoord moet 8 karakters lang zijn"
+                                },
+                                gebruikerWachtwoord2: {
+                                    required: "Vul alstublieft een wachtwoord in",
+                                    minlength: "Uw wachtwoord moet 8 karakters lang zijn",
+                                    equalTo: "Vul het wachtwoord exact het zelfde in"
+                                },
+                                gebruikerEmail: "Vul een geldig email adres in",
+                                gebruikerBedrijfsnaam: "Vul uw bedrijfsnaam in",
+                                gebruikerOmschrijving: "Vul een omschrijving in",
+                            }
+                        });
+                    });
+                </script>
                 <script>
                     $('#main-slider').liquidSlider();
                 </script>
