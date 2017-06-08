@@ -1,35 +1,48 @@
 @extends('layout')
 
 @section('header')
-        <!doctype html>
-<html lang="{{ config('app.locale') }}">
+        <!DOCTYPE html>
+<html>
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
-    <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
-    <title>Dynamic-city</title>
+    <!-- Project CSS -->
+    <link rel="stylesheet" type="text/css" href="/public/assets/styles/main.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/public/assets/bootstrap/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/public/assets/bootstrap/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.0.0/animate.min.css">
+    <link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
+    <link rel="stylesheet" href="/public/assets/liquidslider-master/css/liquid-slider.css">
+    <link rel="stylesheet" href="/public/assets/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--favicon link -->
+    <link rel="apple-touch-icon" sizes="180x180" href="public/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="public/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="public/assets/favicon/favicon-16x16.png">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Edit pand - Dynamic City</title>
+    <!--favicon link -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/public/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/public/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/public/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/public/assets/favicon/manifest.json">
+    <link rel="mask-icon" href="/public/assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
 </head>
+
 <body>
-<article id="menu">
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container text-center">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    <img alt="Dynamic-city" src="...">
-                </a>
-                <form class="navbar-form navbar-right">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="search" placeholder="Zoek een stad in de buurt">
-                    </div>
-                </form>
+
+<!-- Header -->
+<header id="headerOpmaak">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                <a href="{{route('index')}}"><img id="headerLogo" src="/public/assets/images/chameleon-blue-txt.svg" alt="Dynamic City Logo"></a>
             </div>
+            <nav id="headerNav" class="col-md-9 col-sm-9 col-xs-12">
+            @include('menu')
         </div>
-    </nav>
-</article>
+    </div>
+</header>
 @endsection
 
 @section('main')
@@ -47,141 +60,85 @@
             {{ session('status') }}
         </div>
     @endif
-
-
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-8 col-xs-8 col-lg-8 text-center centerCol">
-                <form class="form-horizontal" action="" method="post">
-                    <fieldset>
-                    {{ csrf_field() }}
-
-
-                    <!-- change col-sm-N to reflect how you would like your column spacing (http://getbootstrap.com/css/#forms-control-sizes) -->
-
-
-                        <!-- Form Name -->
-                        <legend>Bewerk pand</legend>
-
-                        <!-- Text input http://getbootstrap.com/css/#forms -->
-                        <div class="form-group">
-                            <label for="pandOppervlakte" class="control-label col-sm-2">Oppervlakte</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" id="pandOppervlakte" name="pandOppervlakte"
-                                       placeholder="vul hier het aantal vierkante meters in" required=""
-                                       type="number" value="{{ $pandInfo["oppervlakte"] }}">
-
-                            </div>
-                        </div>
-                        <!-- Textarea http://getbootstrap.com/css/#textarea -->
-                        <div class="form-group">
-                            <label class="control-label col-sm-2"
-                                   for="pandOmschrijving">Omschrijving</label>
-                            <div class="col-sm-10">
-                                            <textarea class="form-control" id="pandOmschrijving" name="pandOmschrijving"
-                                                      rows="2"
-                                                      placeholder="Geef hier een korte beschrijving van het pand"
-                                                      required="">{{ $pandInfo["omschrijving"] }}</textarea>
-
-                            </div>
-                        </div>
-
-                        <!-- Text input http://getbootstrap.com/css/#forms -->
-                        <div class="form-group">
-                            <label for="pandStraat" class="control-label col-sm-2">Straat</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" id="pandStraat" name="pandStraat"
-                                       placeholder="Vul hier de straatnaam + nummer in van het pand"
-                                       required="" type="text" value="{{ $pandInfo["straat"] }}">
-
-                            </div>
-                        </div>
-                        <!-- Text input http://getbootstrap.com/css/#forms -->
-                        <div class="form-group">
-                            <label for="pandPostcode" class="control-label col-sm-2">Postcode</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" id="pandPostcode" name="pandPostcode"
-                                       placeholder="Vul hier de postcode in van het pand" required=""
-                                       type="text" value="{{ $pandInfo["postcode"] }}">
-
-                            </div>
-                        </div>
-                        <!-- Text input http://getbootstrap.com/css/#forms -->
-                        <div class="form-group">
-                            <label for="pandStad" class="control-label col-sm-2">Stad</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" id="pandStad" name="pandStad"
-                                       placeholder="Vul hier de stad in waar het pand is gelegen"
-                                       required="" type="text" value="{{ $pandInfo["stad"] }}">
-
-                            </div>
-                        </div>
-                        <!-- Text input http://getbootstrap.com/css/#forms -->
-                        <div class="form-group">
-                            <label for="pandPrijs" class="control-label col-sm-2">Prijs</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" id="pandPrijs" name="pandPrijs"
-                                       placeholder="Vul hier de prijs in van het pand" required=""
-                                       type="number" value="{{ $pandInfo["prijs"] }}">
-
-                            </div>
-                        </div>
-                        <!-- Text input http://getbootstrap.com/css/#forms -->
-                        <div class="form-group">
-                            <label for="pandLigging" class="control-label col-sm-2">Ligging</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" id="pandLigging" name="pandLigging"
-                                       placeholder="Vul hier de ligging in van het pand" required=""
-                                       type="text" value="{{ $pandInfo["ligging"] }}">
-
-                            </div>
-                        </div>
-                        <!-- Text input http://getbootstrap.com/css/#forms -->
-                        <div class="form-group">
-                            <label for="pandStatus" class="control-label col-sm-2">Status</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" id="pandStatus" name="pandStatus"
-                                       placeholder="Vul hier de status in van het Pand" required=""
-                                       type="text" value="{{ $pandInfo["status"] }}">
-
-                            </div>
-                        </div>
-                        <!-- Text input http://getbootstrap.com/css/#forms -->
-                        <div class="form-group">
-                            <label for="pandPlekken" class="control-label col-sm-2">Aantal Plekken</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" id="pandPlekken" name="pandPlekken"
-                                       placeholder="Vul hier het aantal plekken in van het pand" required=""
-                                       type="text" value="{{ $pandInfo["aantalPlekken"] }}">
-
-                            </div>
-                        </div>
-
-                        <!-- Button http://getbootstrap.com/css/#buttons -->
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="Edit"></label>
-                            <div class="text-center col-sm-10">
-                                <button type="submit" id="Edit" name="Edit"
-                                        class="btn btn-primary" aria-label="">Save
-                                </button>
-
-                            </div>
-                        </div>
-
-                    </fieldset>
-                </form>
+    <main>
+        <section id="introSection">
+            <div class="container" style="padding: 50px 0px;">
+                <div id="introBlock" class="registerBlock col-md-offset-4 col-md-4 col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-10">
+                    <h2 id="loginHeader">Pand Aanpassen</h2>
+                    <form action="" method="post">
+                        {{ csrf_field() }}
+                        <p class="regLabel">Oppervlakte</p>     <input class="smallInput"  type="number" name="pandOppervlakte"
+                                                                       placeholder="vul hier het aantal vierkante meters in"
+                                                                       value="{{ $pandInfo["oppervlakte"] }}">
+                        <p class="regLabel">Omschrijving</p>      <input class="smallInput" type="text" name="pandOmschrijving" value="{{ $pandInfo["omschrijving"] }}">
+                        <p class="regLabel">Straat</p>    <input class="smallInput" type="text" name="pandStraat" value="{{ $pandInfo["straat"] }}">
+                        <p class="regLabel">Postcode</p>   <input class="smallInput" type="text" name="pandPostcode" value="{{ $pandInfo["postcode"] }}">
+                        <p class="regLabel">Stad</p>    <input class="smallInput" type="text" name="pandStad" value="{{ $pandInfo["stad"] }}">
+                        <p class="regLabel">Prijs</p>  <input class="smallInput" type="number" name="pandPrijs" value="{{ $pandInfo["prijs"] }}">
+                        <p class="regLabel">Ligging</p>        <input class="smallInput" type="text" name="pandLigging" value="{{ $pandInfo["ligging"] }}">
+                        <p class="regLabel">Status</p>        <input class="smallInput" type="text" name="pandStatus" value="{{ $pandInfo["status"] }}">
+                        <p class="regLabel">Aantal plekken</p>        <input class="smallInput" type="number" name="pandPlekken" value="{{ $pandInfo["aantalPlekken"] }}">
+                        <input class="button" type="submit" id="Edit" name="Edit" value="Aanpassen">
+                    </form>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 @endsection
 
 @section('footer')
+    <footer>
+        <div class="container">
+            <div class="col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
+                <h2 class="text-center">Dynamic-city</h2>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-xs-12 text-center">
+                        <ul class="footerMenu">
+                            <li>Contact</li>
+                            <li><i class="adres fa fa-home"></i>Rachelsmolen 1</li>
+                            <li><i class="adres"></i>5612 MA, Eindhoven</li>
+                            <li><i class="adres fa fa-envelope"></i>projectobbi@gmail.com</li>
+                        </ul>
+                    </div>
+                    <div class="mobileFooterPadding col-md-4 col-sm-4 col-xs-12 text-center">
+                        <ul class="footerMenu">
+                            <li>Social media</li>
+                            <li><a href="https://www.facebook.com/DynamicCityNL" target="_blank"><i
+                                            class="social fa fa-facebook"></i></a></li>
+                            <li><a href="https://twitter.com/dynamic_cityNL" target="_blank"><i
+                                            class="social fa fa-twitter"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/dynamic-city-aa08a7144/" target="_blank"><i
+                                            class="social fa fa-linkedin"></i></a></li>
+                            <li><a href="https://nl.pinterest.com/dynamiccity0274/" target="_blank"><i
+                                            class="social fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 text-center">
+                        <ul class="footerMenu">
+                            <li>Menu</li>
+                            <li><a href="http://dynamic-city.nl/panden/overzicht">Ruimtes</a></li>
+                            <li><a href="http://dynamic-city.nl/verhuurder/registratie">Word verhuurder</a></li>
+                            <li><a href="http://dynamic-city.nl/huurder/registratie">Aanmelden</a></li>
+                            <li><a href="http://dynamic-city.nl/huurder/inloggen">Inloggen</a></li>
+                            <li><a href="http://dynamic-city.nl/info">Info</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js"></script>
+                <script src="/public/assets/liquidslider-master/js/jquery.liquid-slider.min.js"></script>
+                @include('analytics')
+                <script src="/public/js/main.js"></script>
+                <script src="/public/assets/js/schnitzelMenu.js"></script>
+                <script>
+                    $('#main-slider').liquidSlider();
+
+                </script>
+            </div>
+        </div>
+    </footer>
 </body>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"
-        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-<script src="/js/google.js"></script>
+
 </html>
 @endsection
