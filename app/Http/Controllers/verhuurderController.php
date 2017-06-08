@@ -69,7 +69,7 @@ class verhuurderController extends Controller
                 Session::put('verhuurder_ID', $account->verhuurder_ID);
                 Session::put('verhuurder_Voornaam', $account->verhuurder_Voornaam);
                 Session::put('verhuurder_Achternaam', $account->verhuurder_Achternaam);
-                return redirect()->route('verhuurderProfiel');
+                return redirect()->route('pandenVerhuurder');
             }
             return back()->with('status', 'Email of wachtwoord is incorrect');
         }

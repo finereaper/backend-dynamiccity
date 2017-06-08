@@ -80,7 +80,7 @@ Route::post('verhuurder/afwijzen/huurafspraak/{huurder_ID}/{pandId}','verhuurder
 Route::get('map','pandController@pandMaps');
 
 //Route die alle panden toont van een verhuurder
-Route::get('verhuurder/panden', 'verhuurderController@overviewPanden')->middleware('authVerhuurder');
+Route::get('verhuurder/panden', 'verhuurderController@overviewPanden')->name('pandenVerhuurder')->middleware('authVerhuurder');
 
 
 
