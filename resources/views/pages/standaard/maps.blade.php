@@ -78,6 +78,7 @@
                             <li><a href="http://dynamic-city.nl/huurder/registratie">Aanmelden</a></li>
                             <li><a href="http://dynamic-city.nl/huurder/inloggen">Inloggen</a></li>
                             <li><a href="http://dynamic-city.nl/info">Info</a></li>
+                            <li><a href="http://dynamic-city.nl/overons">Over ons</a></li>
                         </ul>
                     </div>
                 </div>

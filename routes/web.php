@@ -12,16 +12,18 @@
 */
 
 Route::get('/', 'defaultController@index')->name('index');
+Route::get('overons','defaultController@overOns')->name('overOns');
+Route::get('info', 'pandController@getInfo');
+Route::get('voorwaarden', 'defaultController@getVoorwaarden')->name('voorwaarden');
+Route::get('wachtwoordreset', 'defaultController@getPassswordreset');
+Route::post('wachtwoordreset', 'defaultController@postPassswordreset');
+
 
 Route::get('panden','pandController@index');
 Route::get('panden/foto/{pandId}','pandController@getPandfoto');
 Route::get('panden/fotos/{pandId}','pandController@getAllfoto');
 Route::get('panden/overzicht', 'pandController@getAllpands')->name('allePanden');
 Route::post('panden/zoek', 'pandController@searchPands');
-Route::get('info', 'pandController@getInfo');
-Route::get('voorwaarden', 'defaultController@getVoorwaarden')->name('voorwaarden');
-Route::get('wachtwoordreset', 'defaultController@getPassswordreset');
-Route::post('wachtwoordreset', 'defaultController@postPassswordreset');
 
 
 //route voor het registeren van de huurder en verhuurder

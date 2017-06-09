@@ -63,4 +63,9 @@ class defaultController extends Controller
             return back()->with('status', 'Wachtwoord is gereset, check uw mail');
         }
     }
+
+    public function overOns()
+    {
+        return view('pages.standaard.overOns');
+    }
 }
