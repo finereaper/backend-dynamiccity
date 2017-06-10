@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Mail;
 
 class defaultController extends Controller
 {
+
+    /**
+     * Methode voor het tonen van de index pagina
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $panden = Pand::all();
@@ -19,16 +24,29 @@ class defaultController extends Controller
         return view('pages.standaard.index', compact('panden'));
     }
 
+    /**
+     * Methode voor het tonen van de voorwaarde pagina
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getVoorwaarden()
     {
         return view('pages.standaard.voorwaarde');
     }
 
+    /**
+     * Methode voor het tonen van de wachtwoord resest pagina
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getPassswordreset()
     {
         return view('pages.standaard.passwordReset');
     }
 
+    /**
+     * Methode voor het reseten van het wachtwoord
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postPassswordreset(Request $request)
     {
         $options = [
@@ -64,6 +82,10 @@ class defaultController extends Controller
         }
     }
 
+    /**
+     * Methode voor het tonen van de Over ons pagina
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function overOns()
     {
         return view('pages.standaard.overOns');

@@ -23,6 +23,11 @@ use function Symfony\Component\Debug\Tests\FatalErrorHandler\test_namespaced_fun
 
 class pandController extends Controller
 {
+
+    /**
+     * Methode die alle panden echoed
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
     public function index()
     {
         $panden = new Pand();
@@ -30,11 +35,20 @@ class pandController extends Controller
 
     }
 
+    /**
+     * Methode voor het tonen van de Meer info pagina
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getInfo()
     {
         return view('pages.standaard.meerinfo');
     }
 
+    /**
+     * Methode voor het ophalen van de eerste afbeelding van een pand
+     * @param $pandId
+     * @return string
+     */
     public function getPandfoto($pandId)
     {
         $pandFoto = new pandFoto();
@@ -42,6 +56,11 @@ class pandController extends Controller
         return json_encode($allFoto[0]["fotoURL"]);
     }
 
+    /**
+     * Methode voor het het ophalen van alle afbeeldingen van een pand
+     * @param $pandId
+     * @return string
+     */
     public function getAllfoto($pandId)
     {
         $pandFoto = new pandFoto();
@@ -54,11 +73,20 @@ class pandController extends Controller
         return json_encode($fotos);
     }
 
+    /**
+     * Methode voor het tonen van panden toevoeg pagina
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showAddpand()
     {
         return view('pages.verhuurder.addpand');
     }
 
+    /**
+     * Methode die een pand toevoegd aan de database
+     * @param UploadRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function Addpand(UploadRequest $request)
     {
         $cor = getCor($request->pandStraat, $request->pandStad);
@@ -86,6 +114,11 @@ class pandController extends Controller
         return back()->with('status', 'Pand is toegevoegd');
     }
 
+    /**
+     * Methode voor het tonen van de meer info pagina van een pand
+     * @param $pandId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function Infopand($pandId)
     {
         $pand = new Pand();
@@ -103,6 +136,10 @@ class pandController extends Controller
         return view('pages.standaard.infopand', compact('pandInfo', 'info', 'intresses'));
     }
 
+    /**
+     * Methode voor het tonen van de alle panden pagina
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getAllpands()
     {
         $intresses = DB::select('SELECT idPand, COUNT(heeftInteresse) as aantalLikes FROM interesse GROUP BY idPand ORDER BY aantalLikes DESC LIMIT 3');
@@ -113,6 +150,11 @@ class pandController extends Controller
         return view('pages.standaard.panden', compact('panden'));
     }
 
+    /**
+     * Methode voor het zoeken naar het panden en toont deze dan
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function searchPands(Request $request)
     {
         $options = [
@@ -129,6 +171,11 @@ class pandController extends Controller
 
     }
 
+    /**
+     * Methode voor het tonen van de pand wijzig pagina
+     * @param $pandId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     */
     public function showEditpand($pandId)
     {
         $pand = new Pand();
@@ -141,6 +188,12 @@ class pandController extends Controller
         return view("pages.verhuurder.editpand", compact("pandInfo"));
     }
 
+    /**
+     * Methode voor het wijzigen van de informatie van een pand
+     * @param EditpandRequest $request
+     * @param $pandId
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function Editpand(EditpandRequest $request, $pandId)
     {
         $pand = Pand::find($pandId);
@@ -157,7 +210,11 @@ class pandController extends Controller
         return back()->with('status', 'Het opslaan is gelukt');
     }
 
-    // deleten moet ook al de foto's en favorieten en likes weggooien
+    /**
+     * Methode voor het verwijderen van een pand en de bijbehorende afbeeldingen
+     * @param $pandId
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function deletePand($pandId)
     {
         Pand::destroy($pandId);
@@ -171,6 +228,11 @@ class pandController extends Controller
         return back()->with('status', 'Pand is verwijdert');
     }
 
+    /**
+     * Methode voor het verwijderen van een like
+     * @param $pandId
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function deleteLike($pandId)
     {
         $intresse = new Interesse();
@@ -178,6 +240,11 @@ class pandController extends Controller
         return back()->with('status', 'Pand is nu verwijdert uit liked');
     }
 
+    /**
+     * Methode voor het like van een pand
+     * @param $pandId
+     * @return string
+     */
     public function likePand($pandId)
     {
         $interesse = new Interesse();
@@ -192,11 +259,21 @@ class pandController extends Controller
         return 'Dit pand is al geliked';
     }
 
+    /**
+     * Methode voor het tonen van google maps pagina
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function pandMaps()
     {
         return view('pages.standaard.maps');
     }
 
+    /**
+     * Methode voor het stellen van een vraag over een pand
+     * @param Request $request
+     * @param $pandId
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postStelvraag(Request $request, $pandId)
     {
         $query = DB::select('SELECT verhuurder_Voornaam,verhuurder_Achternaam,verhuurder_Email FROM verhuurder WHERE verhuurder_ID in (SELECT verhuurder_ID FROM pand WHERE idPand = ?)', [$pandId]);

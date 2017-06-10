@@ -17,11 +17,20 @@ use PhpParser\Node\Expr\Cast\Int_;
 
 class huurderController extends Controller
 {
+    /**
+     * Methode voor het tonen van de registratie van een huurder
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         return view('pages.huurder.registratie');
     }
 
+    /**
+     * Methode voor het registeren van een huurder
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
     public function register(Request $request)
     {
         $options = [
@@ -54,11 +63,20 @@ class huurderController extends Controller
         return back()->with('status', 'Dit email adress is al eerder gebruikt')->withInput(Input::except('gebruikerWachtwoord1','gebruikerWachtwoord2'));;
     }
 
+    /**
+     * Methode voor het tonen van de inlog pagina van de huurder
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showLogin()
     {
         return view('pages.standaard.inloggen');
     }
 
+    /**
+     * Methode voor het inloggen van een huurder
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function doLogin(Request $request)
     {
         $options = [
@@ -81,12 +99,20 @@ class huurderController extends Controller
         return back()->with('status', 'Email of wachtwoord is incorrect');
     }
 
+    /**
+     * Methode voor het uitloggen van een huurder
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function doLogout()
     {
         Session::flush();
         return redirect('huurder/inloggen');
     }
 
+    /**
+     * Methode voor het tonen van de profiel pagina van een huurder
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showProfile()
     {
         $huurder = new Huurder();
@@ -104,6 +130,10 @@ class huurderController extends Controller
        return view('pages.huurder.profiel', compact('info'));
     }
 
+    /**
+     * Methode voor het tonen van de pagina waarop alle gelikete panden staan van een huurder
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function overviewLikes()
     {
         $intresse = new Interesse();
@@ -118,6 +148,12 @@ class huurderController extends Controller
         return view("pages.huurder.intresses", compact('panden'));
     }
 
+    /**
+     * Methode voor het maken van een huurafspraak
+     * @param HuurafspraakRequest $request
+     * @param $pandId
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function pandHuurafspraak(HuurafspraakRequest $request,$pandId)
     {
         $gebruikerStartdatum = \DateTime::createFromFormat('d/m/Y', $request->gebruikerStartdatum);

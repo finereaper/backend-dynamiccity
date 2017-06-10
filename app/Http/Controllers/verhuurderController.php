@@ -16,11 +16,21 @@ use Illuminate\Support\Facades\Session;
 
 class verhuurderController extends Controller
 {
+
+    /**
+     * Methode voor het tonen van de registratie pagina van een verhuurder
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         return view('pages.verhuurder.registratie');
     }
 
+    /**
+     * Methode voor het registeren van verhuurder
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
     public function register(Request $request)
     {
         $options = [
@@ -49,11 +59,20 @@ class verhuurderController extends Controller
         return back()->with('status', 'Dit email adress is al eerder gebruikt')->withInput(Input::except('gebruikerWachtwoord1','gebruikerWachtwoord2'));
     }
 
+    /**
+     * Methode voor het tonen van de inlog pagina van een verhuurder
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showLogin()
     {
         return view('pages.standaard.inloggen');
     }
 
+    /**
+     * Methode voor het inloggen van de verhuurder
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function doLogin(Request $request)
     {
         $options = [
@@ -76,12 +95,20 @@ class verhuurderController extends Controller
         return back()->with('status', 'Email of wachtwoord is incorrect');
     }
 
+    /**
+     * Methode voor het uitloggen van de verhuurder
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function doLogout()
     {
         Session::flush();
         return redirect('verhuurder/inloggen');
     }
 
+    /**
+     * Methode voor het tonen van de profiel pagina van de verhuurder
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showProfile()
     {
         $verhuurder = new Verhuurder();
@@ -97,6 +124,10 @@ class verhuurderController extends Controller
         return view('pages.verhuurder.profiel', compact('info'));
     }
 
+    /**
+     * Methode voor het tonen van de pagina waarop alle panden staan van een verhuurder
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function overviewPanden()
     {
         $pand = new Pand();
@@ -104,6 +135,10 @@ class verhuurderController extends Controller
         return view('pages.verhuurder.overzicht', compact('panden'));
     }
 
+    /**
+     * Methode voor het tonen van de pagina waarop alle huurafspraken staan van een verhuurder
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function overviewHuuraspraken()
     {
         $huurAfspraaken = DB::select('select * FROM huurafspraak where idPand in (SELECT idPand FROM pand WHERE verhuurder_ID = ?)', [Session::get('verhuurder_ID')]);
@@ -116,6 +151,12 @@ class verhuurderController extends Controller
         return view('pages.verhuurder.huurafspraak', compact('huurAfspraaken', 'huurders', 'panden'));
     }
 
+    /**
+     * Methode voor het accepteren van een huurafspraak
+     * @param $huurder_ID
+     * @param $pandId
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function acceptHuurafspraak($huurder_ID, $pandId)
     {
         $huurAfspraak = new \App\Huurafspraak();
@@ -131,11 +172,24 @@ class verhuurderController extends Controller
         return back()->with('status', 'Huurafspraak is geaccepteerd');
     }
 
+    /**
+     * Methode voor het tonen van de afwijspagina van een huurspraak van verhuurder
+     * @param $huurder_ID
+     * @param $pandId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showdeclineHuurafspraak($huurder_ID, $pandId)
     {
         return view('pages.standaard.huurafspraakForm');
     }
 
+    /**
+     * Methode voor het afwijzen van een huurafspraak
+     * @param Request $request
+     * @param $huurder_ID
+     * @param $pandId
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function declineHuurafspraak(Request $request, $huurder_ID, $pandId)
     {
         $options = [
@@ -150,6 +204,12 @@ class verhuurderController extends Controller
         return redirect('/verhuurder/huurafspraken');
     }
 
+    /**
+     * Methode voor het verwijderen van een huurafspraak
+     * @param $huurder_ID
+     * @param $pandId
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function deleteHuurafspraak($huurder_ID, $pandId)
     {
         $huurAfspraak = new \App\Huurafspraak();
