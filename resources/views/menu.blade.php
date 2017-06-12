@@ -24,7 +24,7 @@
     <ul>
         <li><a href="/pand/toevoegen">Pand toevoegen</a></li>
         <li><a href="/verhuurder/panden">Mijn panden</a></li>
-        <li><a href="#">Huurafspraken</a></li>
+        <li><a href="/verhuurder/huurafspraken">Huurafspraken</a></li>
         <li id="user">
             <i class="fa fa-caret-down" aria-hidden="true"></i>
             <p>{{ \Illuminate\Support\Facades\Session::get('verhuurder_Voornaam') }}</p>
