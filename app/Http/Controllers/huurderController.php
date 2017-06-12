@@ -158,6 +158,11 @@ class huurderController extends Controller
     {
         $gebruikerStartdatum = \DateTime::createFromFormat('d/m/Y', $request->gebruikerStartdatum);
         $gebruikerEinddatum = \DateTime::createFromFormat('d/m/Y', $request->gebruikerEinddatum);
+        if($gebruikerStartdatum == false)
+        {
+            $gebruikerStartdatum = \DateTime::createFromFormat('Y-m-d', $request->gebruikerStartdatum);
+            $gebruikerEinddatum = \DateTime::createFromFormat('Y-m-d', $request->gebruikerEinddatum);
+        }
         $Startdatum = date_format($gebruikerStartdatum, 'Y-m-d');
         $Einddatum = date_format($gebruikerEinddatum, 'Y-m-d');
         $huurAfspraak = new \App\Huurafspraak();

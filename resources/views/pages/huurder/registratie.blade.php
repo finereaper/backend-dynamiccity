@@ -155,7 +155,7 @@
                      alert("submitted!");
                      }
                      });*/
-
+                    console.log(#(''))
                     $().ready(function() {
                         // validate signup form on keyup and submit
                         $("#signupForm").validate({
@@ -178,7 +178,6 @@
                                 gebruikerWachtwoord2: {
                                     required: true,
                                     minlength: 8,
-                                    equalTo: "#gebruikerWachtwoord1"
                                 },
                                 gebruikerEmail: {
                                     required: true,
