@@ -10,7 +10,7 @@
             </div>
             <div id="userMenu">
                 <ul>
-                    <li><a>Mijn account</a></li>
+                    <li><a href="/huurder/profiel">Mijn account</a></li>
                     <li><a href="{{route('huurderUitloggen')}}">Uitloggen</a></li>
                 </ul>
             </div>
