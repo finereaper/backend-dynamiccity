@@ -68,6 +68,8 @@
                     <p>{{$pandInfo["status"]}}</p>
                     <h3>Aantal plekken</h3>
                     <p>{{$pandInfo["aantalPlekken"]}} plekken vrij</p>
+                    <h3>Prijs per plek</h3>
+                    <p>€ {{$pandInfo["aantalPlekken"]}}</p>
                 </div>
             </div>
         </section>
